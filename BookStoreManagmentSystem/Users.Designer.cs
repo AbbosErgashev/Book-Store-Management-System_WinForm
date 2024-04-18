@@ -29,21 +29,27 @@
         private void InitializeComponent()
         {
             panel2 = new Panel();
-            dataGridView1 = new DataGridView();
+            panel8 = new Panel();
+            pictureBox9 = new PictureBox();
+            label14 = new Label();
+            UsersDGV = new DataGridView();
             label5 = new Label();
-            button5 = new Button();
-            button4 = new Button();
-            button3 = new Button();
-            button1 = new Button();
-            textBox4 = new TextBox();
-            textBox3 = new TextBox();
-            textBox2 = new TextBox();
-            textBox1 = new TextBox();
+            UpdateBtn = new Button();
+            DeleteBtn = new Button();
+            ResetBtn = new Button();
+            SaveBtn = new Button();
+            UPassword = new TextBox();
+            UAddress = new TextBox();
+            UPhone = new TextBox();
+            UName = new TextBox();
             label10 = new Label();
             label8 = new Label();
             label7 = new Label();
             label6 = new Label();
             panel1 = new Panel();
+            panel7 = new Panel();
+            pictureBox5 = new PictureBox();
+            label9 = new Label();
             panel6 = new Panel();
             pictureBox4 = new PictureBox();
             label4 = new Label();
@@ -54,17 +60,15 @@
             pictureBox2 = new PictureBox();
             label2 = new Label();
             panel3 = new Panel();
-            label1 = new Label();
-            pictureBox5 = new PictureBox();
-            panel7 = new Panel();
-            label9 = new Label();
-            panel8 = new Panel();
-            pictureBox9 = new PictureBox();
-            label14 = new Label();
             pictureBox1 = new PictureBox();
+            label1 = new Label();
             panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            panel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)UsersDGV).BeginInit();
             panel1.SuspendLayout();
+            panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             panel5.SuspendLayout();
@@ -72,10 +76,6 @@
             panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
-            panel7.SuspendLayout();
-            panel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -83,16 +83,16 @@
             // 
             panel2.BackColor = Color.Silver;
             panel2.Controls.Add(panel8);
-            panel2.Controls.Add(dataGridView1);
+            panel2.Controls.Add(UsersDGV);
             panel2.Controls.Add(label5);
-            panel2.Controls.Add(button5);
-            panel2.Controls.Add(button4);
-            panel2.Controls.Add(button3);
-            panel2.Controls.Add(button1);
-            panel2.Controls.Add(textBox4);
-            panel2.Controls.Add(textBox3);
-            panel2.Controls.Add(textBox2);
-            panel2.Controls.Add(textBox1);
+            panel2.Controls.Add(UpdateBtn);
+            panel2.Controls.Add(DeleteBtn);
+            panel2.Controls.Add(ResetBtn);
+            panel2.Controls.Add(SaveBtn);
+            panel2.Controls.Add(UPassword);
+            panel2.Controls.Add(UAddress);
+            panel2.Controls.Add(UPhone);
+            panel2.Controls.Add(UName);
             panel2.Controls.Add(label10);
             panel2.Controls.Add(label8);
             panel2.Controls.Add(label7);
@@ -102,87 +102,120 @@
             panel2.Size = new Size(798, 661);
             panel2.TabIndex = 2;
             // 
-            // dataGridView1
+            // panel8
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(0, 418);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(801, 240);
-            dataGridView1.TabIndex = 20;
+            panel8.Controls.Add(pictureBox9);
+            panel8.Controls.Add(label14);
+            panel8.Location = new Point(292, 23);
+            panel8.Name = "panel8";
+            panel8.Size = new Size(230, 45);
+            panel8.TabIndex = 4;
+            // 
+            // pictureBox9
+            // 
+            pictureBox9.Image = Properties.Resources.address;
+            pictureBox9.Location = new Point(3, 3);
+            pictureBox9.Name = "pictureBox9";
+            pictureBox9.Size = new Size(45, 45);
+            pictureBox9.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox9.TabIndex = 1;
+            pictureBox9.TabStop = false;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(54, 3);
+            label14.Name = "label14";
+            label14.Size = new Size(100, 25);
+            label14.TabIndex = 0;
+            label14.Text = "Book Shop";
+            // 
+            // UsersDGV
+            // 
+            UsersDGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            UsersDGV.Location = new Point(0, 403);
+            UsersDGV.Name = "UsersDGV";
+            UsersDGV.RowHeadersWidth = 51;
+            UsersDGV.Size = new Size(801, 255);
+            UsersDGV.TabIndex = 20;
+            UsersDGV.CellContentClick += UsersDGV_CellContentClick;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(315, 369);
+            label5.Location = new Point(316, 350);
             label5.Name = "label5";
             label5.Size = new Size(86, 25);
             label5.TabIndex = 18;
             label5.Text = "Users List";
             // 
-            // button5
+            // UpdateBtn
             // 
-            button5.Location = new Point(466, 150);
-            button5.Name = "button5";
-            button5.Size = new Size(94, 33);
-            button5.TabIndex = 17;
-            button5.Text = "Update";
-            button5.UseVisualStyleBackColor = true;
+            UpdateBtn.Location = new Point(466, 150);
+            UpdateBtn.Name = "UpdateBtn";
+            UpdateBtn.Size = new Size(94, 33);
+            UpdateBtn.TabIndex = 17;
+            UpdateBtn.Text = "Update";
+            UpdateBtn.UseVisualStyleBackColor = true;
+            UpdateBtn.Click += UpdateBtn_Click;
             // 
-            // button4
+            // DeleteBtn
             // 
-            button4.Location = new Point(466, 204);
-            button4.Name = "button4";
-            button4.Size = new Size(94, 29);
-            button4.TabIndex = 16;
-            button4.Text = "Delete";
-            button4.UseVisualStyleBackColor = true;
+            DeleteBtn.Location = new Point(466, 204);
+            DeleteBtn.Name = "DeleteBtn";
+            DeleteBtn.Size = new Size(94, 29);
+            DeleteBtn.TabIndex = 16;
+            DeleteBtn.Text = "Delete";
+            DeleteBtn.UseVisualStyleBackColor = true;
+            DeleteBtn.Click += DeleteBtn_Click;
             // 
-            // button3
+            // ResetBtn
             // 
-            button3.Location = new Point(466, 265);
-            button3.Name = "button3";
-            button3.Size = new Size(94, 29);
-            button3.TabIndex = 15;
-            button3.Text = "Reset";
-            button3.UseVisualStyleBackColor = true;
+            ResetBtn.Location = new Point(466, 265);
+            ResetBtn.Name = "ResetBtn";
+            ResetBtn.Size = new Size(94, 29);
+            ResetBtn.TabIndex = 15;
+            ResetBtn.Text = "Reset";
+            ResetBtn.UseVisualStyleBackColor = true;
+            ResetBtn.Click += ResetBtn_Click;
             // 
-            // button1
+            // SaveBtn
             // 
-            button1.Location = new Point(466, 94);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 13;
-            button1.Text = "Save";
-            button1.UseVisualStyleBackColor = true;
+            SaveBtn.Location = new Point(466, 94);
+            SaveBtn.Name = "SaveBtn";
+            SaveBtn.Size = new Size(94, 29);
+            SaveBtn.TabIndex = 13;
+            SaveBtn.Text = "Save";
+            SaveBtn.UseVisualStyleBackColor = true;
+            SaveBtn.Click += SaveBtn_Click;
             // 
-            // textBox4
+            // UPassword
             // 
-            textBox4.Location = new Point(215, 274);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(177, 31);
-            textBox4.TabIndex = 11;
+            UPassword.Location = new Point(215, 274);
+            UPassword.Name = "UPassword";
+            UPassword.Size = new Size(177, 31);
+            UPassword.TabIndex = 11;
             // 
-            // textBox3
+            // UAddress
             // 
-            textBox3.Location = new Point(215, 217);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(177, 31);
-            textBox3.TabIndex = 10;
+            UAddress.Location = new Point(215, 217);
+            UAddress.Name = "UAddress";
+            UAddress.Size = new Size(177, 31);
+            UAddress.TabIndex = 10;
             // 
-            // textBox2
+            // UPhone
             // 
-            textBox2.Location = new Point(215, 152);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(177, 31);
-            textBox2.TabIndex = 9;
+            UPhone.Location = new Point(215, 152);
+            UPhone.Name = "UPhone";
+            UPhone.Size = new Size(177, 31);
+            UPhone.TabIndex = 9;
             // 
-            // textBox1
+            // UName
             // 
-            textBox1.Location = new Point(215, 91);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(177, 31);
-            textBox1.TabIndex = 8;
+            UName.Location = new Point(215, 91);
+            UName.Name = "UName";
+            UName.Size = new Size(177, 31);
+            UName.TabIndex = 8;
             // 
             // label10
             // 
@@ -232,6 +265,34 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(373, 661);
             panel1.TabIndex = 21;
+            // 
+            // panel7
+            // 
+            panel7.Controls.Add(pictureBox5);
+            panel7.Controls.Add(label9);
+            panel7.Location = new Point(21, 340);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(303, 54);
+            panel7.TabIndex = 5;
+            // 
+            // pictureBox5
+            // 
+            pictureBox5.Image = Properties.Resources.address1;
+            pictureBox5.Location = new Point(3, 10);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(44, 41);
+            pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox5.TabIndex = 1;
+            pictureBox5.TabStop = false;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(74, 10);
+            label9.Name = "label9";
+            label9.Size = new Size(69, 25);
+            label9.TabIndex = 0;
+            label9.Text = "Logout";
             // 
             // panel6
             // 
@@ -326,71 +387,6 @@
             panel3.Size = new Size(230, 45);
             panel3.TabIndex = 2;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(54, 3);
-            label1.Name = "label1";
-            label1.Size = new Size(100, 25);
-            label1.TabIndex = 0;
-            label1.Text = "Book Shop";
-            // 
-            // pictureBox5
-            // 
-            pictureBox5.Image = Properties.Resources.address1;
-            pictureBox5.Location = new Point(3, 10);
-            pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(44, 41);
-            pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox5.TabIndex = 1;
-            pictureBox5.TabStop = false;
-            // 
-            // panel7
-            // 
-            panel7.Controls.Add(pictureBox5);
-            panel7.Controls.Add(label9);
-            panel7.Location = new Point(21, 340);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(303, 54);
-            panel7.TabIndex = 5;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Location = new Point(74, 10);
-            label9.Name = "label9";
-            label9.Size = new Size(69, 25);
-            label9.TabIndex = 0;
-            label9.Text = "Logout";
-            // 
-            // panel8
-            // 
-            panel8.Controls.Add(pictureBox9);
-            panel8.Controls.Add(label14);
-            panel8.Location = new Point(292, 23);
-            panel8.Name = "panel8";
-            panel8.Size = new Size(230, 45);
-            panel8.TabIndex = 4;
-            // 
-            // pictureBox9
-            // 
-            pictureBox9.Image = Properties.Resources.address;
-            pictureBox9.Location = new Point(3, 3);
-            pictureBox9.Name = "pictureBox9";
-            pictureBox9.Size = new Size(45, 45);
-            pictureBox9.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox9.TabIndex = 1;
-            pictureBox9.TabStop = false;
-            // 
-            // label14
-            // 
-            label14.AutoSize = true;
-            label14.Location = new Point(54, 3);
-            label14.Name = "label14";
-            label14.Size = new Size(100, 25);
-            label14.TabIndex = 0;
-            label14.Text = "Book Shop";
-            // 
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.address;
@@ -401,6 +397,15 @@
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(54, 3);
+            label1.Name = "label1";
+            label1.Size = new Size(100, 25);
+            label1.TabIndex = 0;
+            label1.Text = "Book Shop";
+            // 
             // Users
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -408,13 +413,21 @@
             ClientSize = new Size(1189, 703);
             Controls.Add(panel1);
             Controls.Add(panel2);
+            FormBorderStyle = FormBorderStyle.Fixed3D;
+            MaximizeBox = false;
             Name = "Users";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Users";
-            Load += Users_Load;
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            panel8.ResumeLayout(false);
+            panel8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
+            ((System.ComponentModel.ISupportInitialize)UsersDGV).EndInit();
             panel1.ResumeLayout(false);
+            panel7.ResumeLayout(false);
+            panel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
@@ -426,12 +439,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
-            panel7.ResumeLayout(false);
-            panel7.PerformLayout();
-            panel8.ResumeLayout(false);
-            panel8.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
@@ -439,16 +446,16 @@
         #endregion
 
         private Panel panel2;
-        private DataGridView dataGridView1;
+        private DataGridView UsersDGV;
         private Label label5;
-        private Button button5;
-        private Button button4;
-        private Button button3;
-        private Button button1;
-        private TextBox textBox4;
-        private TextBox textBox3;
-        private TextBox textBox2;
-        private TextBox textBox1;
+        private Button UpdateBtn;
+        private Button DeleteBtn;
+        private Button ResetBtn;
+        private Button SaveBtn;
+        private TextBox UPassword;
+        private TextBox UAddress;
+        private TextBox UPhone;
+        private TextBox UName;
         private Label label10;
         private Label label8;
         private Label label7;
