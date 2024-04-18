@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace BookStoreManagmentSystem
 {
@@ -76,7 +69,6 @@ namespace BookStoreManagmentSystem
         {
             BNameTb.Text = BooksListDGV.Rows[e.RowIndex].Cells[1].Value.ToString();
             Price.Text = BooksListDGV.Rows[e.RowIndex].Cells[5].Value.ToString();
-            //Qty.Text = BooksListDGV.Rows[e.RowIndex].Cells[4].Value.ToString();
             if (BNameTb.Text == "")
             {
                 key = 0;
@@ -98,13 +90,17 @@ namespace BookStoreManagmentSystem
                 string query = "update BookTbl set BQty=" + newQty + " where BId=" + key + ";";
                 SqlCommand cmd = new SqlCommand(query, Con);
                 cmd.ExecuteNonQuery();
-                //MessageBox.Show("Book Updated Successfully");
                 Con.Close();
                 Populate();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                Con.Close();
+            }
+            finally
+            {
+                Con.Close();
             }
         }
 
@@ -119,9 +115,80 @@ namespace BookStoreManagmentSystem
             Reset();
         }
 
-        private void BooksBillDGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void RefreshBtn_Click(object sender, EventArgs e)
         {
+            printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
 
+            if (printPreviewDialog1.ShowDialog() == DialogResult.OK)
+            {
+                printDocument1.Print();
+            }
+        }
+
+        int prodid, prodqty, prodprice, total, pos = 60;
+        string prodname;
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            // Calculate the center of the page
+            int centerX = e.PageBounds.Width / 2;
+
+            e.Graphics.DrawString("Book Shop", new Font("Century Gothic", 12, FontStyle.Bold), Brushes.Red, new Point(centerX - 50, 10));
+            e.Graphics.DrawString("ID Product Price Quantity Total", new Font("Century Gothic", 10, FontStyle.Bold), Brushes.Red, new Point(centerX - 100, 40));
+
+            int column1X = centerX - 200;
+            int column2X = centerX - 150;
+            int column3X = centerX;
+            int column4X = centerX + 50;
+            int column5X = centerX + 150;
+
+            // Adjust the spacing between rows
+            int rowSpacing = 30;
+            int startPos = 70;
+
+            int currentY = startPos;
+
+            foreach (DataGridViewRow row in BooksBillDGV.Rows)
+            {
+                prodid = Convert.ToInt32(row.Cells["Column1"].Value);
+                prodname = "" + row.Cells["Column2"].Value;
+                prodprice = Convert.ToInt32(row.Cells["Column3"].Value);
+                prodqty = Convert.ToInt32(row.Cells["Column4"].Value);
+                total = Convert.ToInt32(row.Cells["Column5"].Value);
+                e.Graphics.DrawString("" + prodid, new Font("Century Gothic", 8, FontStyle.Bold), Brushes.Blue, new Point(column1X, currentY));
+                e.Graphics.DrawString("" + prodname, new Font("Century Gothic", 8, FontStyle.Bold), Brushes.Blue, new Point(column2X, currentY));
+                e.Graphics.DrawString("" + prodprice, new Font("Century Gothic", 8, FontStyle.Bold), Brushes.Blue, new Point(column3X, currentY));
+                e.Graphics.DrawString("" + prodqty, new Font("Century Gothic", 8, FontStyle.Bold), Brushes.Blue, new Point(column4X, currentY));
+                e.Graphics.DrawString("" + total, new Font("Century Gothic", 8, FontStyle.Bold), Brushes.Blue, new Point(column5X, currentY));
+
+                // Increment the current Y position for the next row
+                currentY += rowSpacing;
+            }
+
+            // Calculate the position for the grand total
+            int totalY = currentY + 50;
+
+            // Check if any data is present before displaying the grand total
+            if (BooksBillDGV.Rows.Count > 0)
+            {
+                // Calculate the grand total only if there is data available
+                int grandTotal = 0;
+                foreach (DataGridViewRow row in BooksBillDGV.Rows)
+                {
+                    grandTotal += Convert.ToInt32(row.Cells["Column5"].Value);
+                }
+
+                e.Graphics.DrawString(" Grand Total: RS" + grandTotal, new Font("Century Gothic", 12, FontStyle.Bold), Brushes.Crimson, new Point(centerX - 50, totalY));
+            }
+
+            // Draw store name
+            e.Graphics.DrawString("*********** BookStore ***********", new Font("Century Gothic", 10, FontStyle.Bold), Brushes.Crimson, new Point(centerX - 100, totalY + 35));
+
+            // Clear the DataGridView and reset position and total
+            BooksBillDGV.Rows.Clear();
+            BooksBillDGV.Refresh();
+            pos = 100;
+            GrdTotal = 0;
         }
     }
 }
