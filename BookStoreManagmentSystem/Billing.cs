@@ -109,6 +109,7 @@ namespace BookStoreManagmentSystem
             BNameTb.Text = "";
             Qty.Text = "";
             Price.Text = "";
+            CNameTb.Text = "";
         }
         private void ResetBtn_Click(object sender, EventArgs e)
         {
@@ -117,8 +118,29 @@ namespace BookStoreManagmentSystem
 
         private void RefreshBtn_Click(object sender, EventArgs e)
         {
-            printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
+            if (CNameTb.Text == "" || BNameTb.Text == "")
+            {
+                MessageBox.Show("Select Client Name");
+            }
+            else
+            {
+                try
+                {
+                    Con.Open();
+                    string query = "insert into BillTbl values('" + UsernameLbl.Text + "', '" + CNameTb.Text + "'," + GrdTotal + ")";
+                    SqlCommand cmd = new SqlCommand(query, Con);
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Bill Saved Successfully");
+                    Con.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    Con.Close();
+                }
+            }
 
+            printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
             if (printPreviewDialog1.ShowDialog() == DialogResult.OK)
             {
                 printDocument1.Print();
@@ -130,7 +152,6 @@ namespace BookStoreManagmentSystem
 
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            // Calculate the center of the page
             int centerX = e.PageBounds.Width / 2;
 
             e.Graphics.DrawString("Book Shop", new Font("Century Gothic", 12, FontStyle.Bold), Brushes.Red, new Point(centerX - 50, 10));
@@ -142,7 +163,6 @@ namespace BookStoreManagmentSystem
             int column4X = centerX + 50;
             int column5X = centerX + 150;
 
-            // Adjust the spacing between rows
             int rowSpacing = 30;
             int startPos = 70;
 
@@ -160,35 +180,50 @@ namespace BookStoreManagmentSystem
                 e.Graphics.DrawString("" + prodprice, new Font("Century Gothic", 8, FontStyle.Bold), Brushes.Blue, new Point(column3X, currentY));
                 e.Graphics.DrawString("" + prodqty, new Font("Century Gothic", 8, FontStyle.Bold), Brushes.Blue, new Point(column4X, currentY));
                 e.Graphics.DrawString("" + total, new Font("Century Gothic", 8, FontStyle.Bold), Brushes.Blue, new Point(column5X, currentY));
-
-                // Increment the current Y position for the next row
-                currentY += rowSpacing;
+                pos = pos + 20;
             }
 
-            // Calculate the position for the grand total
             int totalY = currentY + 50;
 
-            // Check if any data is present before displaying the grand total
             if (BooksBillDGV.Rows.Count > 0)
             {
-                // Calculate the grand total only if there is data available
                 int grandTotal = 0;
                 foreach (DataGridViewRow row in BooksBillDGV.Rows)
                 {
                     grandTotal += Convert.ToInt32(row.Cells["Column5"].Value);
                 }
 
-                e.Graphics.DrawString(" Grand Total: RS" + grandTotal, new Font("Century Gothic", 12, FontStyle.Bold), Brushes.Crimson, new Point(centerX - 50, totalY));
+                e.Graphics.DrawString(" Grand Total: $ " + grandTotal, new Font("Century Gothic", 12, FontStyle.Bold), Brushes.Crimson, new Point(centerX - 50, totalY));
             }
 
-            // Draw store name
-            e.Graphics.DrawString("*********** BookStore ***********", new Font("Century Gothic", 10, FontStyle.Bold), Brushes.Crimson, new Point(centerX - 100, totalY + 35));
+            e.Graphics.DrawString("*********** BookStore ***********", new Font("Century Gothic", 10, FontStyle.Bold), Brushes.Crimson, new Point(centerX - 100, totalY + 50));
 
-            // Clear the DataGridView and reset position and total
             BooksBillDGV.Rows.Clear();
             BooksBillDGV.Refresh();
             pos = 100;
             GrdTotal = 0;
+        }
+
+        private void Billing_Load(object sender, EventArgs e)
+        {
+            UsernameLbl.Text = Login.UserName;
+        }
+
+        private void TotalLbl_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+            Login obj = new Login();
+            obj.Show();
+            this.Hide();
         }
     }
 }

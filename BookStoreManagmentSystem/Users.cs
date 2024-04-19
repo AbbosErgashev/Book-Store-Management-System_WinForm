@@ -160,5 +160,26 @@ namespace BookStoreManagmentSystem
                 key = Convert.ToInt32(UsersDGV.Rows[e.RowIndex].Cells[0].Value.ToString());
             }
         }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+            Login obj = new Login();
+            obj.Show();
+            this.Hide();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            Books books = new Books();
+            books.Show();
+            this.Hide();
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            Dashboard dashboard = new Dashboard();
+            dashboard.Show();
+            this.Hide();
+        }
     }
 }
