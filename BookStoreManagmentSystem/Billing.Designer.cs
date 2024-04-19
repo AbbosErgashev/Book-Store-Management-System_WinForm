@@ -30,10 +30,15 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Billing));
             panel1 = new Panel();
+            panel7 = new Panel();
+            pictureBox5 = new PictureBox();
+            label11 = new Label();
             panel3 = new Panel();
             pictureBox1 = new PictureBox();
             label1 = new Label();
             panel2 = new Panel();
+            pictureBox2 = new PictureBox();
+            UsernameLbl = new Label();
             TotalLbl = new Label();
             RefreshBtn = new Button();
             label2 = new Label();
@@ -61,9 +66,12 @@
             printDocument1 = new System.Drawing.Printing.PrintDocument();
             printPreviewDialog1 = new PrintPreviewDialog();
             panel1.SuspendLayout();
+            panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)BooksBillDGV).BeginInit();
             panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
@@ -73,11 +81,41 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(64, 64, 64);
+            panel1.Controls.Add(panel7);
             panel1.Controls.Add(panel3);
             panel1.Location = new Point(-5, 38);
             panel1.Name = "panel1";
             panel1.Size = new Size(373, 661);
             panel1.TabIndex = 23;
+            // 
+            // panel7
+            // 
+            panel7.Controls.Add(pictureBox5);
+            panel7.Controls.Add(label11);
+            panel7.Location = new Point(21, 579);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(303, 54);
+            panel7.TabIndex = 10;
+            // 
+            // pictureBox5
+            // 
+            pictureBox5.Image = Properties.Resources.address1;
+            pictureBox5.Location = new Point(3, 10);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(44, 41);
+            pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox5.TabIndex = 1;
+            pictureBox5.TabStop = false;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(74, 10);
+            label11.Name = "label11";
+            label11.Size = new Size(69, 25);
+            label11.TabIndex = 0;
+            label11.Text = "Logout";
+            label11.Click += label11_Click;
             // 
             // panel3
             // 
@@ -110,6 +148,8 @@
             // panel2
             // 
             panel2.BackColor = Color.Silver;
+            panel2.Controls.Add(pictureBox2);
+            panel2.Controls.Add(UsernameLbl);
             panel2.Controls.Add(TotalLbl);
             panel2.Controls.Add(RefreshBtn);
             panel2.Controls.Add(label2);
@@ -132,6 +172,25 @@
             panel2.Size = new Size(798, 661);
             panel2.TabIndex = 22;
             // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = Properties.Resources.address;
+            pictureBox2.Location = new Point(3, 3);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(45, 45);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.TabIndex = 3;
+            pictureBox2.TabStop = false;
+            // 
+            // UsernameLbl
+            // 
+            UsernameLbl.AutoSize = true;
+            UsernameLbl.Location = new Point(54, 3);
+            UsernameLbl.Name = "UsernameLbl";
+            UsernameLbl.Size = new Size(94, 25);
+            UsernameLbl.TabIndex = 2;
+            UsernameLbl.Text = "UserName";
+            // 
             // TotalLbl
             // 
             TotalLbl.AutoSize = true;
@@ -140,6 +199,7 @@
             TotalLbl.Size = new Size(49, 25);
             TotalLbl.TabIndex = 26;
             TotalLbl.Text = "Total";
+            TotalLbl.Click += TotalLbl_Click;
             // 
             // RefreshBtn
             // 
@@ -365,12 +425,17 @@
             Name = "Billing";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Billing";
+            Load += Billing_Load;
             panel1.ResumeLayout(false);
+            panel7.ResumeLayout(false);
+            panel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)BooksBillDGV).EndInit();
             panel8.ResumeLayout(false);
             panel8.PerformLayout();
@@ -412,5 +477,10 @@
         private DataGridViewTextBoxColumn Column5;
         private System.Drawing.Printing.PrintDocument printDocument1;
         private PrintPreviewDialog printPreviewDialog1;
+        private PictureBox pictureBox2;
+        private Label UsernameLbl;
+        private Panel panel7;
+        private PictureBox pictureBox5;
+        private Label label11;
     }
 }

@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            panel2 = new Panel();
-            label1 = new Label();
-            label2 = new Label();
             label3 = new Label();
+            label2 = new Label();
+            label1 = new Label();
+            panel2 = new Panel();
+            AdminLink = new Label();
+            LoginBtn = new Button();
+            UPasswordTb = new TextBox();
+            UNameTb = new TextBox();
+            label4 = new Label();
+            label5 = new Label();
             panel8 = new Panel();
             pictureBox9 = new PictureBox();
             label14 = new Label();
-            label4 = new Label();
-            label5 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            button1 = new Button();
-            label6 = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel8.SuspendLayout();
@@ -59,29 +59,14 @@
             panel1.Size = new Size(323, 435);
             panel1.TabIndex = 0;
             // 
-            // panel2
+            // label3
             // 
-            panel2.BackColor = SystemColors.ActiveCaption;
-            panel2.Controls.Add(label6);
-            panel2.Controls.Add(button1);
-            panel2.Controls.Add(textBox2);
-            panel2.Controls.Add(textBox1);
-            panel2.Controls.Add(label4);
-            panel2.Controls.Add(label5);
-            panel2.Controls.Add(panel8);
-            panel2.Location = new Point(341, 12);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(447, 435);
-            panel2.TabIndex = 1;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(89, 90);
-            label1.Name = "label1";
-            label1.Size = new Size(87, 25);
-            label1.TabIndex = 0;
-            label1.Text = "Nice Staff";
+            label3.AutoSize = true;
+            label3.Location = new Point(89, 150);
+            label3.Name = "label3";
+            label3.Size = new Size(87, 25);
+            label3.TabIndex = 2;
+            label3.Text = "Nice Staff";
             // 
             // label2
             // 
@@ -92,14 +77,80 @@
             label2.TabIndex = 1;
             label2.Text = "Nice Staff";
             // 
-            // label3
+            // label1
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(89, 150);
-            label3.Name = "label3";
-            label3.Size = new Size(87, 25);
-            label3.TabIndex = 2;
-            label3.Text = "Nice Staff";
+            label1.AutoSize = true;
+            label1.Location = new Point(89, 90);
+            label1.Name = "label1";
+            label1.Size = new Size(87, 25);
+            label1.TabIndex = 0;
+            label1.Text = "Nice Staff";
+            // 
+            // panel2
+            // 
+            panel2.BackColor = SystemColors.ActiveCaption;
+            panel2.Controls.Add(AdminLink);
+            panel2.Controls.Add(LoginBtn);
+            panel2.Controls.Add(UPasswordTb);
+            panel2.Controls.Add(UNameTb);
+            panel2.Controls.Add(label4);
+            panel2.Controls.Add(label5);
+            panel2.Controls.Add(panel8);
+            panel2.Location = new Point(341, 12);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(447, 435);
+            panel2.TabIndex = 1;
+            // 
+            // AdminLink
+            // 
+            AdminLink.AutoSize = true;
+            AdminLink.Location = new Point(205, 352);
+            AdminLink.Name = "AdminLink";
+            AdminLink.Size = new Size(65, 25);
+            AdminLink.TabIndex = 9;
+            AdminLink.Text = "Admin";
+            // 
+            // LoginBtn
+            // 
+            LoginBtn.Location = new Point(205, 281);
+            LoginBtn.Name = "LoginBtn";
+            LoginBtn.Size = new Size(94, 36);
+            LoginBtn.TabIndex = 8;
+            LoginBtn.Text = "Login";
+            LoginBtn.UseVisualStyleBackColor = true;
+            LoginBtn.Click += LoginBtn_Click;
+            // 
+            // UPasswordTb
+            // 
+            UPasswordTb.Location = new Point(148, 227);
+            UPasswordTb.Name = "UPasswordTb";
+            UPasswordTb.Size = new Size(241, 31);
+            UPasswordTb.TabIndex = 7;
+            // 
+            // UNameTb
+            // 
+            UNameTb.Location = new Point(148, 151);
+            UNameTb.Name = "UNameTb";
+            UNameTb.Size = new Size(241, 31);
+            UNameTb.TabIndex = 6;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(40, 227);
+            label4.Name = "label4";
+            label4.Size = new Size(87, 25);
+            label4.TabIndex = 2;
+            label4.Text = "Password";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(40, 150);
+            label5.Name = "label5";
+            label5.Size = new Size(91, 25);
+            label5.TabIndex = 3;
+            label5.Text = "Username";
             // 
             // panel8
             // 
@@ -128,56 +179,6 @@
             label14.Size = new Size(100, 25);
             label14.TabIndex = 0;
             label14.Text = "Book Shop";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(40, 227);
-            label4.Name = "label4";
-            label4.Size = new Size(87, 25);
-            label4.TabIndex = 2;
-            label4.Text = "Password";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(40, 150);
-            label5.Name = "label5";
-            label5.Size = new Size(91, 25);
-            label5.TabIndex = 3;
-            label5.Text = "Username";
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(148, 151);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(241, 31);
-            textBox1.TabIndex = 6;
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(148, 227);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(241, 31);
-            textBox2.TabIndex = 7;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(205, 281);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 8;
-            button1.Text = "Login";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(205, 352);
-            label6.Name = "label6";
-            label6.Size = new Size(65, 25);
-            label6.TabIndex = 9;
-            label6.Text = "Admin";
             // 
             // Login
             // 
@@ -210,9 +211,9 @@
         private Label label14;
         private Label label4;
         private Label label5;
-        private Label label6;
-        private Button button1;
-        private TextBox textBox2;
-        private TextBox textBox1;
+        private Label AdminLink;
+        private Button LoginBtn;
+        private TextBox UPasswordTb;
+        private TextBox UNameTb;
     }
 }

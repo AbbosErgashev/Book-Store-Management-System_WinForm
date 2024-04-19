@@ -118,6 +118,7 @@
             label11.Size = new Size(69, 25);
             label11.TabIndex = 0;
             label11.Text = "Logout";
+            label11.Click += label11_Click;
             // 
             // panel6
             // 
@@ -146,6 +147,7 @@
             label4.Size = new Size(100, 25);
             label4.TabIndex = 0;
             label4.Text = "Dashboard";
+            label4.Click += label4_Click;
             // 
             // panel5
             // 
@@ -174,6 +176,7 @@
             label3.Size = new Size(55, 25);
             label3.TabIndex = 0;
             label3.Text = "Users";
+            label3.Click += label3_Click;
             // 
             // panel4
             // 

@@ -293,6 +293,7 @@
             label9.Size = new Size(69, 25);
             label9.TabIndex = 0;
             label9.Text = "Logout";
+            label9.Click += label9_Click;
             // 
             // panel6
             // 
@@ -321,6 +322,7 @@
             label4.Size = new Size(100, 25);
             label4.TabIndex = 0;
             label4.Text = "Dashboard";
+            label4.Click += label4_Click;
             // 
             // panel5
             // 
@@ -377,6 +379,7 @@
             label2.Size = new Size(61, 25);
             label2.TabIndex = 0;
             label2.Text = "Books";
+            label2.Click += label2_Click;
             // 
             // panel3
             // 
