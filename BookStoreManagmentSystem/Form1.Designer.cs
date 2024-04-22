@@ -32,76 +32,87 @@
             label2 = new Label();
             button1 = new Button();
             panel1 = new Panel();
-            label3 = new Label();
             label4 = new Label();
+            label3 = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(273, 37);
+            label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            label1.Location = new Point(273, 39);
             label1.Name = "label1";
-            label1.Size = new Size(263, 25);
+            label1.Size = new Size(298, 28);
             label1.TabIndex = 0;
             label1.Text = "67. Kitoblarni Ombordan Sotish";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(307, 105);
+            label2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            label2.Location = new Point(311, 107);
             label2.Name = "label2";
-            label2.Size = new Size(147, 25);
-            label2.TabIndex = 1;
+            label2.Size = new Size(169, 28);
+            label2.TabIndex = 0;
             label2.Text = "Berilganlar Bazasi";
             // 
             // button1
             // 
-            button1.Location = new Point(625, 317);
+            button1.Cursor = Cursors.Hand;
+            button1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            button1.Location = new Point(618, 288);
             button1.Name = "button1";
             button1.Size = new Size(137, 64);
-            button1.TabIndex = 2;
+            button1.TabIndex = 1;
             button1.Text = "Next";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // panel1
             // 
+            panel1.BackColor = Color.FromArgb(224, 224, 224);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(button1);
             panel1.Controls.Add(label2);
-            panel1.Location = new Point(12, 25);
+            panel1.Location = new Point(3, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(776, 413);
+            panel1.Size = new Size(793, 383);
             panel1.TabIndex = 3;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(100, 369);
-            label3.Name = "label3";
-            label3.Size = new Size(84, 25);
-            label3.TabIndex = 3;
-            label3.Text = "Tekshirdi:";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(100, 317);
+            label4.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            label4.Location = new Point(98, 263);
             label4.Name = "label4";
-            label4.Size = new Size(203, 25);
+            label4.Size = new Size(229, 28);
             label4.TabIndex = 4;
             label4.Text = "Bajardi: Ergashev Abbos";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            label3.Location = new Point(98, 315);
+            label3.Name = "label3";
+            label3.Size = new Size(98, 28);
+            label3.TabIndex = 3;
+            label3.Text = "Tekshirdi:";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            BackColor = Color.Blue;
+            ClientSize = new Size(800, 390);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.Fixed3D;
+            MaximizeBox = false;
             Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Kirish";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

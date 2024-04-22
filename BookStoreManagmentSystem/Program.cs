@@ -6,7 +6,7 @@ namespace BookStoreManagmentSystem
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            Application.Run(new Dashboard());
+            Application.Run(new Form1());
         }
     }
 }

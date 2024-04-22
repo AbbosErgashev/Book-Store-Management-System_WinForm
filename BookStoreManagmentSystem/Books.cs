@@ -12,6 +12,7 @@ namespace BookStoreManagmentSystem
         }
 
         SqlConnection Con = new SqlConnection("Data Source=ACER;Initial Catalog=BookShopManagmentSystem;Integrated Security=True;Encrypt=False");
+        int key = 0;
 
         private void Populate()
         {
@@ -85,6 +86,7 @@ namespace BookStoreManagmentSystem
             BTitleTb.Text = "";
             BautTb.Text = "";
             BCatCb.SelectedIndex = -1;
+            BCatCb.Text = "";
             BPriceTb.Text = "";
             BQuanTb.Text = "";
         }
@@ -96,8 +98,11 @@ namespace BookStoreManagmentSystem
 
         private void BRefreshBtn_Click(object sender, EventArgs e)
         {
-            Populate();
             CatFiltrCb.SelectedIndex = -1;
+            CatFiltrCb.Text = "Filtr by Category";
+            AllSearchTbl.Text = "";
+            Populate();
+            Con.Close();
         }
 
         private void BResetBtn_Click(object sender, EventArgs e)
@@ -105,7 +110,6 @@ namespace BookStoreManagmentSystem
             Reset();
         }
 
-        int key = 0;
         private void BookDGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             BTitleTb.Text = BookDGV.Rows[e.RowIndex].Cells[1].Value.ToString();
@@ -177,6 +181,33 @@ namespace BookStoreManagmentSystem
             }
         }
 
+        private DataTable AllSearch()
+        {
+            string query = "SELECT * FROM BookTbl ";
+            query += "WHERE BId LIKE '%' + @param + '%' ";
+            query += "OR BTitle LIKE '%' + @param + '%' ";
+            query += "OR BAuthor LIKE '%' + @param + '%' ";
+            query += "OR BCat LIKE '%' + @param + '%' ";
+            query += "OR BQty LIKE '%' + @param + '%' ";
+            query += "OR BPrice LIKE '%' + @param + '%'";
+            string con = "Data Source=ACER;Initial Catalog=BookShopManagmentSystem;Integrated Security=True;Encrypt=False";
+
+            using (SqlConnection conn = new SqlConnection(con))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@param", AllSearchTbl.Text);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        BookDGV.DataSource = dt;
+                        return dt;
+                    }
+                }
+            }
+        }
+
         private void label11_Click(object sender, EventArgs e)
         {
             Login obj = new Login();
@@ -196,6 +227,11 @@ namespace BookStoreManagmentSystem
             Dashboard dashboard = new Dashboard();
             dashboard.Show();
             this.Hide();
+        }
+
+        private void AllSearchTbl_TextChanged(object sender, EventArgs e)
+        {
+            AllSearch();
         }
     }
 }

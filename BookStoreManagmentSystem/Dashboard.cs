@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace BookStoreManagmentSystem
 {
@@ -19,6 +11,26 @@ namespace BookStoreManagmentSystem
         }
 
         SqlConnection Con = new SqlConnection("Data Source=ACER;Initial Catalog=BookShopManagmentSystem;Integrated Security=True;Encrypt=False");
+
+        private void Dashboard_Load(object sender, EventArgs e)
+        {
+            Con.Open();
+            SqlDataAdapter sda = new SqlDataAdapter("select sum(BQty) from BookTbl", Con);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            BookStockLbl.Text = dt.Rows[0][0].ToString();
+
+            SqlDataAdapter sda1 = new SqlDataAdapter("select sum(Amount) from BillTbl", Con);
+            DataTable dt1 = new DataTable();
+            sda1.Fill(dt1);
+            AmountLbl.Text = "$  " + dt1.Rows[0][0].ToString();
+
+            SqlDataAdapter sda2 = new SqlDataAdapter("select Count(*) from UserTbl", Con);
+            DataTable dt2 = new DataTable();
+            sda2.Fill(dt2);
+            UserStockLbl.Text = dt2.Rows[0][0].ToString();
+            Con.Close();
+        }
 
         private void label9_Click(object sender, EventArgs e)
         {
@@ -39,31 +51,6 @@ namespace BookStoreManagmentSystem
             Users users = new Users();
             users.Show();
             this.Hide();
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Dashboard_Load(object sender, EventArgs e)
-        {
-            Con.Open();
-            SqlDataAdapter sda = new SqlDataAdapter("select sum(BQty) from BookTbl", Con);
-            DataTable dt =new DataTable();
-            sda.Fill(dt);
-            BookStockLbl.Text = dt.Rows[0][0].ToString();
-
-            SqlDataAdapter sda1 = new SqlDataAdapter("select sum(Amount) from BillTbl", Con);
-            DataTable dt1 =new DataTable();
-            sda1.Fill(dt1);
-            AmountLbl.Text = dt1.Rows[0][0].ToString();
-
-            SqlDataAdapter sda2 = new SqlDataAdapter("select Count(*) from UserTbl", Con);
-            DataTable dt2 =new DataTable();
-            sda2.Fill(dt2);
-            UserStockLbl.Text = dt2.Rows[0][0].ToString();
-            Con.Close();
         }
     }
 }

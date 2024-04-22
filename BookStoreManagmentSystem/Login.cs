@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace BookStoreManagmentSystem
 {
@@ -41,6 +33,13 @@ namespace BookStoreManagmentSystem
                 Con.Close();
             }
             Con.Close();
+        }
+
+        private void AdminLink_Click(object sender, EventArgs e)
+        {
+            AdminLogin adminLogin = new AdminLogin();
+            adminLogin.Show();
+            this.Hide();
         }
     }
 }

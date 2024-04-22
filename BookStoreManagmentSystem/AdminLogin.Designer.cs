@@ -1,6 +1,6 @@
 ﻿namespace BookStoreManagmentSystem
 {
-    partial class Login
+    partial class AdminLogin
     {
         /// <summary>
         /// Required designer variable.
@@ -28,17 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminLogin));
             panel2 = new Panel();
-            panel8 = new Panel();
-            pictureBox9 = new PictureBox();
-            label14 = new Label();
             AdminLink = new Label();
             LoginBtn = new Button();
             UPasswordTb = new TextBox();
-            UNameTb = new TextBox();
             label4 = new Label();
-            label5 = new Label();
+            panel8 = new Panel();
+            pictureBox9 = new PictureBox();
+            label14 = new Label();
             panel2.SuspendLayout();
             panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
@@ -46,27 +44,67 @@
             // 
             // panel2
             // 
-            panel2.BackColor = Color.FromArgb(224, 224, 224);
-            panel2.Controls.Add(panel8);
+            panel2.BackColor = Color.Silver;
             panel2.Controls.Add(AdminLink);
             panel2.Controls.Add(LoginBtn);
             panel2.Controls.Add(UPasswordTb);
-            panel2.Controls.Add(UNameTb);
             panel2.Controls.Add(label4);
-            panel2.Controls.Add(label5);
-            panel2.Location = new Point(4, 4);
+            panel2.Controls.Add(panel8);
+            panel2.Location = new Point(5, 5);
             panel2.Name = "panel2";
-            panel2.Size = new Size(702, 399);
-            panel2.TabIndex = 1;
+            panel2.Size = new Size(628, 322);
+            panel2.TabIndex = 2;
+            // 
+            // AdminLink
+            // 
+            AdminLink.AutoSize = true;
+            AdminLink.BackColor = Color.Transparent;
+            AdminLink.Cursor = Cursors.Hand;
+            AdminLink.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 204);
+            AdminLink.Location = new Point(209, 259);
+            AdminLink.Name = "AdminLink";
+            AdminLink.Size = new Size(204, 28);
+            AdminLink.TabIndex = 2;
+            AdminLink.Text = "Return as Login Page";
+            AdminLink.Click += AdminLink_Click;
+            // 
+            // LoginBtn
+            // 
+            LoginBtn.BackColor = Color.Transparent;
+            LoginBtn.Cursor = Cursors.Hand;
+            LoginBtn.Location = new Point(259, 175);
+            LoginBtn.Name = "LoginBtn";
+            LoginBtn.Size = new Size(109, 47);
+            LoginBtn.TabIndex = 1;
+            LoginBtn.Text = "Login";
+            LoginBtn.UseVisualStyleBackColor = false;
+            LoginBtn.Click += LoginBtn_Click;
+            // 
+            // UPasswordTb
+            // 
+            UPasswordTb.Location = new Point(192, 105);
+            UPasswordTb.Name = "UPasswordTb";
+            UPasswordTb.PasswordChar = '*';
+            UPasswordTb.Size = new Size(300, 31);
+            UPasswordTb.TabIndex = 0;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(103, 108);
+            label4.Name = "label4";
+            label4.Size = new Size(87, 25);
+            label4.TabIndex = 2;
+            label4.Text = "Password";
             // 
             // panel8
             // 
             panel8.Controls.Add(pictureBox9);
             panel8.Controls.Add(label14);
-            panel8.Location = new Point(155, 30);
+            panel8.Location = new Point(137, 16);
             panel8.Name = "panel8";
             panel8.Size = new Size(372, 50);
-            panel8.TabIndex = 10;
+            panel8.TabIndex = 5;
             // 
             // pictureBox9
             // 
@@ -88,73 +126,17 @@
             label14.TabIndex = 0;
             label14.Text = "Book Shop Managment System";
             // 
-            // AdminLink
-            // 
-            AdminLink.AutoSize = true;
-            AdminLink.Cursor = Cursors.Hand;
-            AdminLink.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 204);
-            AdminLink.Location = new Point(257, 333);
-            AdminLink.Name = "AdminLink";
-            AdminLink.Size = new Size(186, 28);
-            AdminLink.TabIndex = 3;
-            AdminLink.Text = "Continue as Admin";
-            AdminLink.Click += AdminLink_Click;
-            // 
-            // LoginBtn
-            // 
-            LoginBtn.Cursor = Cursors.Hand;
-            LoginBtn.Location = new Point(298, 249);
-            LoginBtn.Name = "LoginBtn";
-            LoginBtn.Size = new Size(109, 42);
-            LoginBtn.TabIndex = 2;
-            LoginBtn.Text = "Login";
-            LoginBtn.UseVisualStyleBackColor = true;
-            LoginBtn.Click += LoginBtn_Click;
-            // 
-            // UPasswordTb
-            // 
-            UPasswordTb.Location = new Point(207, 180);
-            UPasswordTb.Name = "UPasswordTb";
-            UPasswordTb.PasswordChar = '*';
-            UPasswordTb.Size = new Size(303, 31);
-            UPasswordTb.TabIndex = 1;
-            // 
-            // UNameTb
-            // 
-            UNameTb.Location = new Point(207, 116);
-            UNameTb.Name = "UNameTb";
-            UNameTb.Size = new Size(303, 31);
-            UNameTb.TabIndex = 0;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(116, 183);
-            label4.Name = "label4";
-            label4.Size = new Size(87, 25);
-            label4.TabIndex = 2;
-            label4.Text = "Password";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(113, 119);
-            label5.Name = "label5";
-            label5.Size = new Size(91, 25);
-            label5.TabIndex = 3;
-            label5.Text = "Username";
-            // 
-            // Login
+            // AdminLogin
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Blue;
-            ClientSize = new Size(710, 408);
+            ClientSize = new Size(637, 332);
             Controls.Add(panel2);
-            MinimizeBox = false;
-            Name = "Login";
+            MaximizeBox = false;
+            Name = "AdminLogin";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Login";
+            Text = "AdminLogin";
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             panel8.ResumeLayout(false);
@@ -164,13 +146,12 @@
         }
 
         #endregion
+
         private Panel panel2;
-        private Label label4;
-        private Label label5;
         private Label AdminLink;
         private Button LoginBtn;
         private TextBox UPasswordTb;
-        private TextBox UNameTb;
+        private Label label4;
         private Panel panel8;
         private PictureBox pictureBox9;
         private Label label14;
