@@ -1,6 +1,5 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
 
 namespace BookStoreManagmentSystem
 {
@@ -13,6 +12,12 @@ namespace BookStoreManagmentSystem
         }
 
         SqlConnection Con = new SqlConnection("Data Source=ACER;Initial Catalog=BookShopManagmentSystem;Integrated Security=True;Encrypt=False");
+        int key = 0;
+        int stock = 0;
+        int n = 0;
+        int GrdTotal = 0;
+        int prodid, prodqty, prodprice, total, pos = 60;
+        string prodname;
 
         private void Populate()
         {
@@ -37,6 +42,7 @@ namespace BookStoreManagmentSystem
                 Con.Close();
             }
         }
+
         private void AddToBillBtn_Click(object sender, EventArgs e)
         {
             if (Qty.Text == "" || Convert.ToInt32(Qty.Text) > stock)
@@ -60,10 +66,6 @@ namespace BookStoreManagmentSystem
                 TotalLbl.Text = "$ " + GrdTotal;
             }
         }
-        int key = 0;
-        int stock = 0;
-        int n = 0;
-        int GrdTotal = 0;
 
         private void BooksListDGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -111,16 +113,12 @@ namespace BookStoreManagmentSystem
             Price.Text = "";
             CNameTb.Text = "";
         }
-        private void ResetBtn_Click(object sender, EventArgs e)
-        {
-            Reset();
-        }
 
         private void RefreshBtn_Click(object sender, EventArgs e)
         {
             if (CNameTb.Text == "" || BNameTb.Text == "")
             {
-                MessageBox.Show("Select Client Name");
+                MessageBox.Show("Select Your Name / Client Name");
             }
             else
             {
@@ -138,17 +136,14 @@ namespace BookStoreManagmentSystem
                     MessageBox.Show(ex.Message);
                     Con.Close();
                 }
-            }
 
-            printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
-            if (printPreviewDialog1.ShowDialog() == DialogResult.OK)
-            {
-                printDocument1.Print();
+                printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(printDocument1_PrintPage);
+                if (printPreviewDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    printDocument1.Print();
+                }
             }
         }
-
-        int prodid, prodqty, prodprice, total, pos = 60;
-        string prodname;
 
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
@@ -163,11 +158,6 @@ namespace BookStoreManagmentSystem
             int column4X = centerX + 50;
             int column5X = centerX + 150;
 
-            int rowSpacing = 30;
-            int startPos = 70;
-
-            int currentY = startPos;
-
             foreach (DataGridViewRow row in BooksBillDGV.Rows)
             {
                 prodid = Convert.ToInt32(row.Cells["Column1"].Value);
@@ -175,28 +165,18 @@ namespace BookStoreManagmentSystem
                 prodprice = Convert.ToInt32(row.Cells["Column3"].Value);
                 prodqty = Convert.ToInt32(row.Cells["Column4"].Value);
                 total = Convert.ToInt32(row.Cells["Column5"].Value);
-                e.Graphics.DrawString("" + prodid, new Font("Century Gothic", 8, FontStyle.Bold), Brushes.Blue, new Point(column1X, currentY));
-                e.Graphics.DrawString("" + prodname, new Font("Century Gothic", 8, FontStyle.Bold), Brushes.Blue, new Point(column2X, currentY));
-                e.Graphics.DrawString("" + prodprice, new Font("Century Gothic", 8, FontStyle.Bold), Brushes.Blue, new Point(column3X, currentY));
-                e.Graphics.DrawString("" + prodqty, new Font("Century Gothic", 8, FontStyle.Bold), Brushes.Blue, new Point(column4X, currentY));
-                e.Graphics.DrawString("" + total, new Font("Century Gothic", 8, FontStyle.Bold), Brushes.Blue, new Point(column5X, currentY));
+                e.Graphics.DrawString("" + prodid, new Font("Century Gothic", 8, FontStyle.Bold), Brushes.Blue, new Point(column1X, pos));
+                e.Graphics.DrawString("" + prodname, new Font("Century Gothic", 8, FontStyle.Bold), Brushes.Blue, new Point(column2X, pos));
+                e.Graphics.DrawString("" + prodprice, new Font("Century Gothic", 8, FontStyle.Bold), Brushes.Blue, new Point(column3X, pos));
+                e.Graphics.DrawString("" + prodqty, new Font("Century Gothic", 8, FontStyle.Bold), Brushes.Blue, new Point(column4X, pos));
+                e.Graphics.DrawString("" + total, new Font("Century Gothic", 8, FontStyle.Bold), Brushes.Blue, new Point(column5X, pos));
                 pos = pos + 20;
             }
 
-            int totalY = currentY + 50;
+            int totalY = pos + 50;
+            e.Graphics.DrawString(" Grand Total: RS" + GrdTotal, new Font("Century Gothic", 12, FontStyle.Bold), Brushes.Crimson, new Point(centerX - 50, totalY));
 
-            if (BooksBillDGV.Rows.Count > 0)
-            {
-                int grandTotal = 0;
-                foreach (DataGridViewRow row in BooksBillDGV.Rows)
-                {
-                    grandTotal += Convert.ToInt32(row.Cells["Column5"].Value);
-                }
-
-                e.Graphics.DrawString(" Grand Total: $ " + grandTotal, new Font("Century Gothic", 12, FontStyle.Bold), Brushes.Crimson, new Point(centerX - 50, totalY));
-            }
-
-            e.Graphics.DrawString("*********** BookStore ***********", new Font("Century Gothic", 10, FontStyle.Bold), Brushes.Crimson, new Point(centerX - 100, totalY + 50));
+            e.Graphics.DrawString("*********** BookStore ***********", new Font("Century Gothic", 10, FontStyle.Bold), Brushes.Crimson, new Point(centerX - 100, totalY + 35));
 
             BooksBillDGV.Rows.Clear();
             BooksBillDGV.Refresh();
@@ -204,19 +184,36 @@ namespace BookStoreManagmentSystem
             GrdTotal = 0;
         }
 
+        private DataTable AllSearch()
+        {
+            string query = "SELECT * FROM BookTbl ";
+            query += "WHERE BId LIKE '%' + @param + '%' ";
+            query += "OR BTitle LIKE '%' + @param + '%' ";
+            query += "OR BAuthor LIKE '%' + @param + '%' ";
+            query += "OR BCat LIKE '%' + @param + '%' ";
+            query += "OR BQty LIKE '%' + @param + '%' ";
+            query += "OR BPrice LIKE '%' + @param + '%'";
+            string con = "Data Source=ACER;Initial Catalog=BookShopManagmentSystem;Integrated Security=True;Encrypt=False";
+
+            using (SqlConnection conn = new SqlConnection(con))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@param", AllSearchTbl.Text);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        BooksListDGV.DataSource = dt;
+                        return dt;
+                    }
+                }
+            }
+        }
+
         private void Billing_Load(object sender, EventArgs e)
         {
             UsernameLbl.Text = Login.UserName;
-        }
-
-        private void TotalLbl_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void label11_Click(object sender, EventArgs e)
@@ -224,6 +221,30 @@ namespace BookStoreManagmentSystem
             Login obj = new Login();
             obj.Show();
             this.Hide();
+        }
+
+        private void AdminLink_Click(object sender, EventArgs e)
+        {
+            Login login = new Login();
+            login.Show();
+            this.Hide();
+        }
+
+        private void AllSearchTbl_TextChanged(object sender, EventArgs e)
+        {
+            AllSearch();
+        }
+
+        private void ResetBtn_Click(object sender, EventArgs e)
+        {
+            Reset();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AllSearchTbl.Text = "";
+            Populate();
+            Con.Close();
         }
     }
 }

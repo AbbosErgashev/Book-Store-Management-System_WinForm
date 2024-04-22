@@ -63,10 +63,6 @@ namespace BookStoreManagmentSystem
                 }
             }
         }
-        private void SaveBtn_Click(object sender, EventArgs e)
-        {
-            Save();
-        }
 
         private void Reset()
         {
@@ -74,11 +70,6 @@ namespace BookStoreManagmentSystem
             UPhone.Text = "";
             UAddress.Text = "";
             UPassword.Text = "";
-        }
-
-        private void ResetBtn_Click(object sender, EventArgs e)
-        {
-            Reset();
         }
 
         int key = 0;
@@ -108,10 +99,6 @@ namespace BookStoreManagmentSystem
                 }
             }
         }
-        private void DeleteBtn_Click(object sender, EventArgs e)
-        {
-            Delete();
-        }
 
         private void Update()
         {
@@ -124,7 +111,7 @@ namespace BookStoreManagmentSystem
                 try
                 {
                     Con.Open();
-                    string query = "update UserTbl set Name='" + UName.Text + "', UPhone='" + UPhone.Text + "', UAdd='" + UAddress.Text + "', UPass=" + UPassword.Text + " where UId=" + key + ";";
+                    string query = "update UserTbl set UName='" + UName.Text + "', UPhone='" + UPhone.Text + "', UAdd='" + UAddress.Text + "', UPass=" + UPassword.Text + " where UId=" + key + ";";
                     SqlCommand cmd = new SqlCommand(query, Con);
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("User Updated Successfully");
@@ -138,11 +125,6 @@ namespace BookStoreManagmentSystem
                     Con.Close();
                 }
             }
-        }
-
-        private void UpdateBtn_Click(object sender, EventArgs e)
-        {
-            Update();
         }
 
         private void UsersDGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -159,6 +141,57 @@ namespace BookStoreManagmentSystem
             {
                 key = Convert.ToInt32(UsersDGV.Rows[e.RowIndex].Cells[0].Value.ToString());
             }
+        }
+
+        private DataTable AllSearch()
+        {
+            string query = "SELECT * FROM UserTbl ";
+            query += "WHERE UId LIKE '%' + @param + '%' ";
+            query += "OR UName LIKE '%' + @param + '%' ";
+            query += "OR UPhone LIKE '%' + @param + '%' ";
+            query += "OR UAdd LIKE '%' + @param + '%' ";
+            query += "OR UPass LIKE '%' + @param + '%' ";
+            string con = "Data Source=ACER;Initial Catalog=BookShopManagmentSystem;Integrated Security=True;Encrypt=False";
+
+            using (SqlConnection conn = new SqlConnection(con))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@param", SearchAllTbl.Text);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        UsersDGV.DataSource = dt;
+                        return dt;
+                    }
+                }
+            }
+        }
+
+        private void ResetBtn_Click(object sender, EventArgs e)
+        {
+            Reset();
+        }
+
+        private void SaveBtn_Click(object sender, EventArgs e)
+        {
+            Save();
+        }
+
+        private void DeleteBtn_Click(object sender, EventArgs e)
+        {
+            Delete();
+        }
+
+        private void SearchAllTbl_TextChanged(object sender, EventArgs e)
+        {
+            AllSearch();
+        }
+
+        private void UpdateBtn_Click(object sender, EventArgs e)
+        {
+            Update();
         }
 
         private void label9_Click(object sender, EventArgs e)
@@ -180,6 +213,13 @@ namespace BookStoreManagmentSystem
             Dashboard dashboard = new Dashboard();
             dashboard.Show();
             this.Hide();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SearchAllTbl.Text = "";
+            Populate();
+            Con.Close();
         }
     }
 }
