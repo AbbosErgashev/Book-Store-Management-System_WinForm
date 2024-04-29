@@ -330,6 +330,7 @@
             UsernameLbl.Size = new Size(107, 28);
             UsernameLbl.TabIndex = 2;
             UsernameLbl.Text = "UserName";
+            UsernameLbl.Click += UsernameLbl_Click;
             // 
             // TotalLbl
             // 
