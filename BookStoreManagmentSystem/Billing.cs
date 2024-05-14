@@ -170,7 +170,7 @@ namespace BookStoreManagmentSystem
                 e.Graphics.DrawString("" + prodprice, new Font("Century Gothic", 8, FontStyle.Bold), Brushes.Blue, new Point(column3X, pos));
                 e.Graphics.DrawString("" + prodqty, new Font("Century Gothic", 8, FontStyle.Bold), Brushes.Blue, new Point(column4X, pos));
                 e.Graphics.DrawString("" + total, new Font("Century Gothic", 8, FontStyle.Bold), Brushes.Blue, new Point(column5X, pos));
-                pos = pos + 20;
+                pos += 20;
             }
 
             int totalY = pos + 50;
