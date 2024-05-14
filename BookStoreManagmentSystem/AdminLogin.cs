@@ -18,6 +18,7 @@
             else
             {
                 MessageBox.Show("Wring Password. Contact The Admin");
+                UPasswordTb.Text = "";
             }
         }
 

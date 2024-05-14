@@ -31,6 +31,8 @@ namespace BookStoreManagmentSystem
             {
                 MessageBox.Show("Wrong Username or Password");
                 Con.Close();
+                UNameTb.Text = "";
+                UPasswordTb.Text = "";
             }
             Con.Close();
         }

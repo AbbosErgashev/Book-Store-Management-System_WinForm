@@ -9,7 +9,7 @@ namespace BookStoreManagmentSystem
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Login login = new Login();
+            Login login = new();
             login.Show();
             this.Hide();
         }
