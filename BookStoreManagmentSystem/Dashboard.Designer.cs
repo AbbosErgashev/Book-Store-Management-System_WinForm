@@ -61,6 +61,9 @@
             BookStockLbl = new Label();
             pictureBox6 = new PictureBox();
             label5 = new Label();
+            panel12 = new Panel();
+            pictureBox10 = new PictureBox();
+            clbl = new Label();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -81,11 +84,14 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
+            panel12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox10).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = Color.Silver;
+            panel1.Controls.Add(panel12);
             panel1.Controls.Add(panel3);
             panel1.Controls.Add(panel7);
             panel1.Controls.Add(panel6);
@@ -129,7 +135,7 @@
             // 
             panel7.Controls.Add(label9);
             panel7.Controls.Add(pictureBox5);
-            panel7.Location = new Point(0, 288);
+            panel7.Location = new Point(0, 344);
             panel7.Name = "panel7";
             panel7.Size = new Size(370, 54);
             panel7.TabIndex = 5;
@@ -410,6 +416,38 @@
             label5.TabIndex = 0;
             label5.Text = "Book Stock";
             // 
+            // panel12
+            // 
+            panel12.BackColor = Color.Silver;
+            panel12.Controls.Add(pictureBox10);
+            panel12.Controls.Add(clbl);
+            panel12.Location = new Point(0, 289);
+            panel12.Name = "panel12";
+            panel12.Size = new Size(370, 54);
+            panel12.TabIndex = 28;
+            // 
+            // pictureBox10
+            // 
+            pictureBox10.Image = (Image)resources.GetObject("pictureBox10.Image");
+            pictureBox10.Location = new Point(6, 3);
+            pictureBox10.Name = "pictureBox10";
+            pictureBox10.Size = new Size(42, 54);
+            pictureBox10.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox10.TabIndex = 1;
+            pictureBox10.TabStop = false;
+            // 
+            // clbl
+            // 
+            clbl.AutoSize = true;
+            clbl.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold);
+            clbl.ForeColor = Color.Black;
+            clbl.Location = new Point(57, 13);
+            clbl.Name = "clbl";
+            clbl.Size = new Size(101, 25);
+            clbl.TabIndex = 13;
+            clbl.Text = "Categories";
+            clbl.Click += clbl_Click;
+            // 
             // Dashboard
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -418,6 +456,7 @@
             ClientSize = new Size(1197, 688);
             Controls.Add(panel2);
             Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.Fixed3D;
             MaximizeBox = false;
             Name = "Dashboard";
             StartPosition = FormStartPosition.CenterScreen;
@@ -452,6 +491,9 @@
             panel9.ResumeLayout(false);
             panel9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
+            panel12.ResumeLayout(false);
+            panel12.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox10).EndInit();
             ResumeLayout(false);
         }
 
@@ -489,5 +531,8 @@
         private PictureBox pictureBox5;
         private PictureBox pictureBox3;
         private PictureBox pictureBox2;
+        private Panel panel12;
+        private PictureBox pictureBox10;
+        private Label clbl;
     }
 }

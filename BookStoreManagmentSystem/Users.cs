@@ -221,5 +221,12 @@ namespace BookStoreManagmentSystem
             Populate();
             Con.Close();
         }
+
+        private void clbl_Click(object sender, EventArgs e)
+        {
+            Category users = new();
+            users.Show();
+            this.Hide();
+        }
     }
 }

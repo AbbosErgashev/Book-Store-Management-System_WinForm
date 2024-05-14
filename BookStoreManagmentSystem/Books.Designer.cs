@@ -30,6 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Books));
             panel1 = new Panel();
+            panel9 = new Panel();
+            pictureBox7 = new PictureBox();
+            ccb = new Label();
             panel7 = new Panel();
             pictureBox5 = new PictureBox();
             label11 = new Label();
@@ -69,6 +72,8 @@
             label7 = new Label();
             label6 = new Label();
             panel1.SuspendLayout();
+            panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             panel6.SuspendLayout();
@@ -88,6 +93,7 @@
             // panel1
             // 
             panel1.BackColor = Color.Silver;
+            panel1.Controls.Add(panel9);
             panel1.Controls.Add(panel7);
             panel1.Controls.Add(panel6);
             panel1.Controls.Add(panel5);
@@ -98,11 +104,41 @@
             panel1.Size = new Size(357, 677);
             panel1.TabIndex = 0;
             // 
+            // panel9
+            // 
+            panel9.Controls.Add(pictureBox7);
+            panel9.Controls.Add(ccb);
+            panel9.Location = new Point(0, 326);
+            panel9.Name = "panel9";
+            panel9.Size = new Size(356, 54);
+            panel9.TabIndex = 14;
+            // 
+            // pictureBox7
+            // 
+            pictureBox7.Image = (Image)resources.GetObject("pictureBox7.Image");
+            pictureBox7.Location = new Point(1, 0);
+            pictureBox7.Name = "pictureBox7";
+            pictureBox7.Size = new Size(42, 54);
+            pictureBox7.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox7.TabIndex = 1;
+            pictureBox7.TabStop = false;
+            // 
+            // ccb
+            // 
+            ccb.AutoSize = true;
+            ccb.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold);
+            ccb.Location = new Point(49, 15);
+            ccb.Name = "ccb";
+            ccb.Size = new Size(101, 25);
+            ccb.TabIndex = 13;
+            ccb.Text = "Categories";
+            ccb.Click += ccb_Click;
+            // 
             // panel7
             // 
             panel7.Controls.Add(pictureBox5);
             panel7.Controls.Add(label11);
-            panel7.Location = new Point(0, 325);
+            panel7.Location = new Point(0, 380);
             panel7.Name = "panel7";
             panel7.Size = new Size(357, 54);
             panel7.TabIndex = 6;
@@ -278,7 +314,7 @@
             // 
             // AllSearchTbl
             // 
-            AllSearchTbl.Location = new Point(360, 336);
+            AllSearchTbl.Location = new Point(416, 338);
             AllSearchTbl.Name = "AllSearchTbl";
             AllSearchTbl.Size = new Size(273, 31);
             AllSearchTbl.TabIndex = 21;
@@ -328,18 +364,18 @@
             // CatFiltrCb
             // 
             CatFiltrCb.FormattingEnabled = true;
-            CatFiltrCb.Items.AddRange(new object[] { "Programming", "Networking", "Businnes", "Training", "Math", "Physics", "Novels", "Biography", "History", "Medical" });
             CatFiltrCb.Location = new Point(137, 336);
             CatFiltrCb.Name = "CatFiltrCb";
-            CatFiltrCb.Size = new Size(217, 33);
+            CatFiltrCb.Size = new Size(273, 33);
             CatFiltrCb.TabIndex = 9;
-            CatFiltrCb.Text = "Filtr by Category";
+            CatFiltrCb.Text = "Filter by Category";
+            CatFiltrCb.SelectedIndexChanged += CatFiltrCb_SelectedIndexChanged;
             CatFiltrCb.SelectionChangeCommitted += CatFiltrCb_SelectionChangeCommitted;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(47, 340);
+            label5.Location = new Point(9, 340);
             label5.Name = "label5";
             label5.Size = new Size(84, 25);
             label5.TabIndex = 18;
@@ -377,7 +413,7 @@
             // 
             // BRefreshBtn
             // 
-            BRefreshBtn.Location = new Point(639, 335);
+            BRefreshBtn.Location = new Point(695, 336);
             BRefreshBtn.Name = "BRefreshBtn";
             BRefreshBtn.Size = new Size(128, 34);
             BRefreshBtn.TabIndex = 10;
@@ -398,7 +434,6 @@
             // BCatCb
             // 
             BCatCb.FormattingEnabled = true;
-            BCatCb.Items.AddRange(new object[] { "Programming", "Networking", "Businnes", "Training", "Math", "Physics", "Novels", "Biography", "History", "Medical" });
             BCatCb.Location = new Point(137, 162);
             BCatCb.Name = "BCatCb";
             BCatCb.Size = new Size(318, 33);
@@ -491,6 +526,9 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Books";
             panel1.ResumeLayout(false);
+            panel9.ResumeLayout(false);
+            panel9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             panel7.ResumeLayout(false);
             panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
@@ -556,5 +594,8 @@
         private PictureBox pictureBox6;
         private Label label12;
         private TextBox AllSearchTbl;
+        private Panel panel9;
+        private PictureBox pictureBox7;
+        private Label ccb;
     }
 }

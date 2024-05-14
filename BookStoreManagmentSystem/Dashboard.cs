@@ -52,5 +52,12 @@ namespace BookStoreManagmentSystem
             users.Show();
             this.Hide();
         }
+
+        private void clbl_Click(object sender, EventArgs e)
+        {
+            Category users = new();
+            users.Show();
+            this.Hide();
+        }
     }
 }
