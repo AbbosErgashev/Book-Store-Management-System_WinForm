@@ -9,6 +9,8 @@ namespace BookStoreManagmentSystem
         {
             InitializeComponent();
             Populate();
+            GetCategory();
+            FilterByCategory();
         }
 
         SqlConnection Con = new SqlConnection("Data Source=ACER;Initial Catalog=BookShopManagmentSystem;Integrated Security=True;Encrypt=False");
@@ -39,7 +41,7 @@ namespace BookStoreManagmentSystem
             try
             {
                 Con.Open();
-                string query = "select * from BookTbl where BCat='" + CatFiltrCb.SelectedItem.ToString() + "'";
+                string query = "select * from BookTbl where BCat='" + CatFiltrCb.SelectedValue + "'";
                 SqlDataAdapter sda = new SqlDataAdapter(query, Con);
                 SqlCommandBuilder builder = new SqlCommandBuilder(sda);
                 var ds = new DataSet();
@@ -65,7 +67,7 @@ namespace BookStoreManagmentSystem
                 try
                 {
                     Con.Open();
-                    string query = "insert into BookTbl values('" + BTitleTb.Text + "', '" + BautTb.Text + "', '" + BCatCb.SelectedItem.ToString() + "', '" + BQuanTb.Text + "', '" + BPriceTb.Text + "')";
+                    string query = "insert into BookTbl values('" + BTitleTb.Text + "', '" + BautTb.Text + "', '" + BCatCb.SelectedValue + "', '" + BQuanTb.Text + "', '" + BPriceTb.Text + "')";
                     SqlCommand cmd = new SqlCommand(query, Con);
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Book Saved Successfully");
@@ -91,11 +93,6 @@ namespace BookStoreManagmentSystem
             BQuanTb.Text = "";
         }
 
-        private void CatFiltrCb_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            Filter();
-        }
-
         private void BRefreshBtn_Click(object sender, EventArgs e)
         {
             CatFiltrCb.SelectedIndex = -1;
@@ -105,16 +102,11 @@ namespace BookStoreManagmentSystem
             Con.Close();
         }
 
-        private void BResetBtn_Click(object sender, EventArgs e)
-        {
-            Reset();
-        }
-
         private void BookDGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             BTitleTb.Text = BookDGV.Rows[e.RowIndex].Cells[1].Value.ToString();
             BautTb.Text = BookDGV.Rows[e.RowIndex].Cells[2].Value.ToString();
-            BCatCb.Text = BookDGV.Rows[e.RowIndex].Cells[3].Value.ToString();
+            BCatCb.SelectedValue = BookDGV.Rows[e.RowIndex].Cells[3].Value;
             BQuanTb.Text = BookDGV.Rows[e.RowIndex].Cells[4].Value.ToString();
             BPriceTb.Text = BookDGV.Rows[e.RowIndex].Cells[5].Value.ToString();
             if (BTitleTb.Text == "")
@@ -165,7 +157,7 @@ namespace BookStoreManagmentSystem
                 try
                 {
                     Con.Open();
-                    string query = "update BookTbl set BTitle='" + BTitleTb.Text + "', BAuthor='" + BautTb.Text + "', BCat='" + BCatCb.SelectedItem.ToString() + "', BQty=" + BQuanTb.Text + ", BPrice=" + BPriceTb.Text + " where BId=" + key + ";";
+                    string query = "update BookTbl set BTitle='" + BTitleTb.Text + "', BAuthor='" + BautTb.Text + "', BCat='" + BCatCb.SelectedValue + "', BQty=" + BQuanTb.Text + ", BPrice=" + BPriceTb.Text + " where BId=" + key + ";";
                     SqlCommand cmd = new SqlCommand(query, Con);
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Book Updated Successfully");
@@ -208,6 +200,58 @@ namespace BookStoreManagmentSystem
             }
         }
 
+        private void GetCategory()
+        {
+            if (BCatCb.SelectedValue == "")
+            {
+                BCatCb.Text = "Categories is Empty!";
+            }
+            else
+            {
+                SqlConnection cn = new("Data Source=ACER;Initial Catalog=BookShopManagmentSystem;Integrated Security=True;Encrypt=False");
+                cn.Open();
+                SqlCommand cmd = new("select * from CategoryTbl", cn);
+                SqlDataReader rdr = cmd.ExecuteReader();
+                DataTable dt = new();
+                dt.Columns.Add("CategoryId", typeof(int));
+                dt.Load(rdr);
+                BCatCb.DisplayMember = "CategoryName";
+                BCatCb.ValueMember = "CategoryId";
+                BCatCb.DataSource = dt;
+                cn.Close();
+            }
+        }
+
+        private void FilterByCategory()
+        {
+            try
+            {
+                if (BCatCb.SelectedValue == "")
+                {
+                    BCatCb.Text = "Categories is Empty!";
+                }
+                else
+                {
+                    SqlConnection cn = new("Data Source=ACER;Initial Catalog=BookShopManagmentSystem;Integrated Security=True;Encrypt=False");
+                    cn.Open();
+                    SqlCommand cmd = new("select * from CategoryTbl", cn);
+                    SqlDataReader rdr = cmd.ExecuteReader();
+                    DataTable dt = new();
+                    dt.Columns.Add("CategoryId", typeof(int));
+                    dt.Load(rdr);
+                    CatFiltrCb.DisplayMember = "CategoryName";
+                    CatFiltrCb.ValueMember = "CategoryId";
+                    CatFiltrCb.DataSource = dt;
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Con.Close();
+            }
+        }
+
         private void label11_Click(object sender, EventArgs e)
         {
             Login obj = new Login();
@@ -224,7 +268,7 @@ namespace BookStoreManagmentSystem
 
         private void label4_Click(object sender, EventArgs e)
         {
-            Dashboard dashboard = new Dashboard();
+            Dashboard dashboard = new();
             dashboard.Show();
             this.Hide();
         }
@@ -233,6 +277,26 @@ namespace BookStoreManagmentSystem
         {
             AllSearch();
         }
+
+        private void ccb_Click(object sender, EventArgs e)
+        {
+            Category c = new();
+            c.Show();
+            this.Hide();
+        }
+
+        private void CatFiltrCb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FilterByCategory();
+        }
+
+        private void CatFiltrCb_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            Filter();
+        }
+        private void BResetBtn_Click(object sender, EventArgs e)
+        {
+            Reset();
+        }
     }
 }
-    

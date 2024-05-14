@@ -66,6 +66,9 @@
             panel4 = new Panel();
             pictureBox2 = new PictureBox();
             label2 = new Label();
+            panel12 = new Panel();
+            pictureBox10 = new PictureBox();
+            clbl = new Label();
             panel2.SuspendLayout();
             panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
@@ -81,6 +84,8 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            panel12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox10).BeginInit();
             SuspendLayout();
             // 
             // panel2
@@ -294,6 +299,7 @@
             // panel1
             // 
             panel1.BackColor = Color.Silver;
+            panel1.Controls.Add(panel12);
             panel1.Controls.Add(panel3);
             panel1.Controls.Add(panel7);
             panel1.Controls.Add(panel6);
@@ -337,7 +343,7 @@
             // 
             panel7.Controls.Add(pictureBox5);
             panel7.Controls.Add(label9);
-            panel7.Location = new Point(0, 307);
+            panel7.Location = new Point(0, 360);
             panel7.Name = "panel7";
             panel7.Size = new Size(368, 54);
             panel7.TabIndex = 5;
@@ -454,6 +460,38 @@
             label2.Text = "Books";
             label2.Click += label2_Click;
             // 
+            // panel12
+            // 
+            panel12.BackColor = Color.Silver;
+            panel12.Controls.Add(pictureBox10);
+            panel12.Controls.Add(clbl);
+            panel12.Location = new Point(1, 307);
+            panel12.Name = "panel12";
+            panel12.Size = new Size(367, 54);
+            panel12.TabIndex = 29;
+            // 
+            // pictureBox10
+            // 
+            pictureBox10.Image = (Image)resources.GetObject("pictureBox10.Image");
+            pictureBox10.Location = new Point(6, 3);
+            pictureBox10.Name = "pictureBox10";
+            pictureBox10.Size = new Size(42, 54);
+            pictureBox10.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox10.TabIndex = 1;
+            pictureBox10.TabStop = false;
+            // 
+            // clbl
+            // 
+            clbl.AutoSize = true;
+            clbl.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold);
+            clbl.ForeColor = Color.Black;
+            clbl.Location = new Point(57, 13);
+            clbl.Name = "clbl";
+            clbl.Size = new Size(101, 25);
+            clbl.TabIndex = 13;
+            clbl.Text = "Categories";
+            clbl.Click += clbl_Click;
+            // 
             // Users
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -489,6 +527,9 @@
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            panel12.ResumeLayout(false);
+            panel12.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox10).EndInit();
             ResumeLayout(false);
         }
 
@@ -531,5 +572,8 @@
         private Label label11;
         private TextBox SearchAllTbl;
         private Button button1;
+        private Panel panel12;
+        private PictureBox pictureBox10;
+        private Label clbl;
     }
 }
